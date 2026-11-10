@@ -11,22 +11,23 @@ if 1000 <= n <= 9999:
     password = n
     print('Код принят')
 else:
-    print('Код должнем быть 4х значным в диапозоне от 1000 до 999, код не сохранен')
+    print('Код должнем быть 4х значным в диапозоне от 1000 до 9999, код не сохранен')
 
 
 if password > 0:
-    print('Введите предпологаемый код от сейфа')
-    a = int(input())
     b = password
     answer = 0
-    while a > 0:
-            for i in range(4):
-                if a % 10 == b % 10:
-                    answer += 1
-                a = a // 10
-                b = b // 10
-    print('Совпадают - ', answer)
-
+    while b > 0:
+        for i in range(1, 5):
+                for j in range(10):
+                    if j == b % 10:
+                        answer += 1
+                        b = b // 10
+                    elif b == 0:
+                         break
+                if b == 0:
+                     break
+        print('Совпало', answer, 'попыток -', i )
 else:
     print('Нужно начать занаво')
 
