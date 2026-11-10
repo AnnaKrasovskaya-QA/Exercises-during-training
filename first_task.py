@@ -17,18 +17,18 @@ else:
 if password > 0:
     b = password
     answer = 0
-    while b > 0:
-        for i in range(1, 5):
-                print('Начало попытки №', i, 'сейчас совпадает - ', answer)
-                for j in range(10):
-                    if j == b % 10:
-                        answer += 1
-                        b = b // 10
-                    elif b == 0:
-                         break
-                if b == 0:
-                     break
-        print('Итого использовано попыток -', i, 'совпало - ', answer )
+
+    for i in range(1, 5):
+            print('Начало попытки №', i, 'сейчас совпадает - ', answer)
+            for j in range(10):
+                if j == b % 10:
+                    answer += 1
+                    b = b // 10
+                elif b == 0:
+                    break
+            if b == 0:
+                break
+    print('Итого использовано попыток -', i, 'совпало - ', answer )
 else:
     print('Нужно начать занаво')
 
