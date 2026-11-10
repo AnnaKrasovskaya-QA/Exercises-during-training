@@ -4,6 +4,7 @@
 # Напишите программу, которая подбирает код за минимальное количество попыток, используя только циклы, условия и переменные (без строк и списков).
 # Сам секретный код пусть пользователь вводит с клавиатуры при старте программы
 
+
 password = 0
 print('Введите 4-х значный секретный код от сейфа:')
 n = int(input())
@@ -13,22 +14,68 @@ if 1000 <= n <= 9999:
 else:
     print('Код должнем быть 4х значным в диапозоне от 1000 до 9999, код не сохранен')
 
-
+# ВАРИАНТ 1 с перебором всех чисел
 if password > 0:
     b = password
-    answer = 0
+    p = 0
+    for i in range(1000, 10000):
+        p += 1
+        answer = 0
+        if i // 1000 == password // 1000:
+            answer += 1
+        if (i // 100) % 10 == (password // 100) % 10:
+            answer += 1
+        if (i // 10) % 10 == (password // 10) % 10:
+            answer += 1
+        if i % 10 == password % 10:
+            answer += 1
 
-    for i in range(1, 5):
-            print('Начало попытки №', i, 'сейчас совпадает - ', answer)
-            for j in range(10):
-                if j == b % 10:
-                    answer += 1
-                    b = b // 10
-                elif b == 0:
-                    break
-            if b == 0:
-                break
-    print('Итого использовано попыток -', i, 'совпало - ', answer )
+        if answer == 4:
+            print('Код -', i)
+            break
+    print('Итого использовано попыток -', p)
 else:
     print('Нужно начать занаво')
 
+
+# ВАРИАНТ 2 с перебором по позиции
+if password > 0:
+    code = 1000
+    answer = 0
+    attempt = 0
+
+    for o in range(10):
+        attempt += 1
+        if code // 1000 == password // 1000:
+            answer += 1
+            break
+        code += 1000
+    print("Совпало -", answer, "на попытке -", attempt)
+
+    for s in range(10):
+        attempt += 1
+        if ((code // 100) % 10 == (password // 100) % 10):
+            answer += 1
+            break
+        code += 100
+    print("Совпало -", answer, "на попытке -", attempt)
+
+    for f in range(10):
+        attempt += 1
+        if (code // 10) % 10 == (password // 10) % 10:
+            answer += 1
+            break
+        code += 10
+    print("Совпало -", answer, "на попытке -", attempt)
+
+    for t in range(10):
+        attempt += 1
+        if code % 10 == password % 10:
+            answer += 1
+            break
+        code += 1
+    print("Совпало -", answer, "на попытке -", attempt)
+
+    print("Код -", code)
+else:
+    print('Нужно начать занаво')
