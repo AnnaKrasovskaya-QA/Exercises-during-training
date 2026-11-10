@@ -19,6 +19,7 @@ if password > 0:
     answer = 0
     while b > 0:
         for i in range(1, 5):
+                print('Начало попытки №', i, 'сейчас совпадает - ', answer)
                 for j in range(10):
                     if j == b % 10:
                         answer += 1
@@ -27,7 +28,7 @@ if password > 0:
                          break
                 if b == 0:
                      break
-        print('Совпало', answer, 'попыток -', i )
+        print('Итого использовано попыток -', i, 'совпало - ', answer )
 else:
     print('Нужно начать занаво')
 
